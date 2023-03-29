@@ -1,3 +1,4 @@
+const db = require("../../data/db-config");
 /*
   Eğer `scheme_id` veritabanında yoksa:
 
@@ -6,9 +7,23 @@
     "message": "scheme_id <gerçek id> id li şema bulunamadı"
   }
 */
-const checkSchemeId = (req, res, next) => {
+const checkSchemeId = async (req, res, next) => {
+  try {
+    const isExist = await db("schemes")
+      .where("scheme_id", req.params.sheme_id)
+      .first();
 
-}
+    if (!isExist) {
+      res.status(404).json({
+        message: `scheme_id ${req.params.sheme_id} id li şema bulunamadı`,
+      });
+    } else {
+      req.sheme = isExist;
+    }
+  } catch (error) {
+    next(error);
+  }
+};
 
 /*
   Eğer `scheme_name` yoksa, boş string ya da string değil:
@@ -19,8 +34,15 @@ const checkSchemeId = (req, res, next) => {
   }
 */
 const validateScheme = (req, res, next) => {
-
-}
+  try {
+    const schemeName = req.body.scheme_name;
+    if (!schemeName || schemeName == "" || typeof schemeName !== "string") {
+      res.status(400).json({ message: `Geçersiz ${schemeName}` });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
 
 /*
   Eğer `instructions` yoksa, boş string yada string değilse, ya da
@@ -32,11 +54,24 @@ const validateScheme = (req, res, next) => {
   }
 */
 const validateStep = (req, res, next) => {
-
-}
+  try {
+    const { instructions, step_number } = req.body;
+    if (
+      !instructions ||
+      instructions == "" ||
+      typeof instructions !== "string" ||
+      typeof step_number !== "number" ||
+      step_number < 1
+    ) {
+      res.status(400).json({ message: `Hatalı step` });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   checkSchemeId,
   validateScheme,
   validateStep,
-}
+};
