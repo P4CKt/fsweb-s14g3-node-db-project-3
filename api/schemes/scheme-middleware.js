@@ -10,16 +10,17 @@ const db = require("../../data/db-config");
 const checkSchemeId = async (req, res, next) => {
   try {
     const isExist = await db("schemes")
-      .where("scheme_id", req.params.sheme_id)
+      .where("scheme_id", req.params.scheme_id)
       .first();
 
     if (!isExist) {
       res.status(404).json({
-        message: `scheme_id ${req.params.sheme_id} id li şema bulunamadı`,
+        message: `scheme_id ${req.params.scheme_id} id li şema bulunamadı`,
       });
     } else {
-      req.sheme = isExist;
+      req.scheme = isExist;
     }
+    next();
   } catch (error) {
     next(error);
   }
