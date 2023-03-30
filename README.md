@@ -8,10 +8,10 @@ Projeyi forklayın, clone'layın ve sıkça commitlemeyi unutmayın.
 
 ### Veritabanı
 
-Veritabanı projede kullanılmak üzere sizin için hazırlandı. 
+Veritabanı projede kullanılmak üzere sizin için hazırlandı.
 👉 Veriler, `npm run seed` çalıştırılarak herhangi bir zamanda sıfırlanabilir. 👈
 
-Öncelikle SQLite Studio(önerilir) gibi bir araç kullanarak veya VS Code'a SQLite Viewer extension'ını yükleyerek  `data/schemes.db3` dosyasını açın ve `schemes` ve `steps` tablolarındaki verileri inceleyin.
+Öncelikle SQLite Studio(önerilir) gibi bir araç kullanarak veya VS Code'a SQLite Viewer extension'ını yükleyerek `data/schemes.db3` dosyasını açın ve `schemes` ve `steps` tablolarındaki verileri inceleyin.
 
 ### API
 
@@ -27,19 +27,19 @@ Veritabanı projede kullanılmak üzere sizin için hazırlandı.
 
 Bu dosyanın içindeki talimatları izleyerek middleware işlevlerini `api/schemes/scheme-middleware.js` içinde yazın:
 
-- [ ] `checkSchemeId`
-- [ ] `validateScheme`
-- [ ] `validateStep`
+- [+] `checkSchemeId`
+- [+] `validateScheme`
+- [+] `validateStep`
 
 ### Veritabanı Fonksiyonları
 
 Bu dosyanın içindeki talimatları izleyerek db erişim işlevlerini `api/schemes/scheme-model.js` içine yazın:
 
-- [ ] `find`
-- [ ] `findById`
-- [ ] `findSteps`
-- [ ] `add`
-- [ ] `addStep`
+- [+] `find`
+- [+] `findById`
+- [+] `findSteps`
+- [+] `add`
+- [+] `addStep`
 
 #### Schemes Şeması
 
